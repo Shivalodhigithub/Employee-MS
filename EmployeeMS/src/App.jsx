@@ -1,11 +1,14 @@
 
 import './App.css'
+import Login from './Components/Login'
+// import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 function App() {
 
   return (
     <>
-    <h1>Hello this shiva</h1>
+    <Login/>
        
     </>
   )
