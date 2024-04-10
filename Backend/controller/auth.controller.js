@@ -4,8 +4,29 @@
 
 const adminModel=require('../model/admin.model')
 const jwt=require('jsonwebtoken')
+const bcrypt=require('bcrypt')
 const sec_key=require('../config/seckey.config')
+exports.signUp=(req,res)=>{
+    try {
+        //read data from req body 
+        const req_body = req.body;
 
+        const dataObj={
+            name:req_body.name,
+            email:req_body.email,
+            password:bcrypt.hash(req.req_body.password,8),
+            mobile:req_body.mobile
+        }
+
+        //store data in data base 
+
+        //return response
+        
+    } catch (error) {
+        console.log("Internal server error",error);
+        
+    }
+}
 exports.signIn=async(req,res)=>{
     try {
         // 1.read the req body 
@@ -16,7 +37,7 @@ exports.signIn=async(req,res)=>{
         // 2.insert the data into data base 
         const Email = await adminModel.findOne({email:req.body.email})
         if(!Email) {
-            return res.status(400).json({loginStatus:false,Error:'User does not exist'})
+            return res.status(200).json({loginStatus:false,Error:'User does not exist'})
            
         }
 
@@ -31,7 +52,38 @@ exports.signIn=async(req,res)=>{
     } catch (error) {
         console.log(" Intel Error while SignIn",error) 
 
+        // send to fronted error  
+        res.status(400).json({loginStatus:false,Error:'Internal server error'})
+
         
+    }
+}
+
+/**
+ * Get number of admin
+ */
+exports.cntAdmin=async(req,res)=>{
+    try {
+      const n=await adminModel.countDocuments({})
+      return res.status(200).json({Status:true,count:n})
+        
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({Status:false}) 
+    }
+}
+
+/**
+ * log out admin
+ */
+
+exports.logOutAdmin=(req,res)=>{
+    try {
+         res.clearCookie('token')
+         return res.status(200).json({Status:true})
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({Status:false})
     }
 }
 

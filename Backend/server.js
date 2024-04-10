@@ -12,6 +12,7 @@ app.use(cors({
     credentials:true
 }))
 app.use(express.json()) //middle ware to covert data into json format
+app.use(express.static('Public'))
 
 //  connect to the mongo db 
 mongoose.connect(url.dbUrl)
@@ -27,7 +28,8 @@ db.once('open',()=>{
 
 // sitch route to the server file  
 require('./routes/auth.routes')(app);
-
+require('./routes/category.routes')(app);
+require('./routes/emp.routes')(app);
 /**
  * Server is running
  */
