@@ -31,19 +31,19 @@ exports.signIn=async(req,res)=>{
     try {
         // 1.read the req body 
         const user1 = req.body;
-        console.log(user1)
+        // console.log(user1)
 
 
         // 2.insert the data into data base 
-        const Email = await adminModel.findOne({email:req.body.email})
-        if(!Email) {
+        const User=await adminModel.findOne({email:req.body.email})
+        if(!User) {
             return res.status(200).json({loginStatus:false,Error:'User does not exist'})
            
         }
 
         // generate token  
-        const gentoken=jwt.sign({role:'admin',email:Email},sec_key.sec_key,{expiresIn:'1hr'})
-        res.cookie('token' , gentoken)
+        const token=jwt.sign({role:'admin',email:User.email , _id:User._id},sec_key.sec_key,{expiresIn:'1hr'})
+        res.cookie('token', token)
         // console.log(gentoken); 
 
         //3.return response
@@ -74,6 +74,18 @@ exports.cntAdmin=async(req,res)=>{
 }
 
 /**
+ * verify user
+ */
+exports.verify=(req,res)=>{
+    try {
+        return res.json({Status:true, role:req.role ,_id:req._id})
+        
+    } catch (error) {
+        console.log("Internal server Error",error)
+        
+    }
+}
+/**
  * log out admin
  */
 
@@ -86,4 +98,6 @@ exports.logOutAdmin=(req,res)=>{
         return res.status(500).json({Status:false})
     }
 }
+
+
 

@@ -4,6 +4,7 @@ const cors=require('cors')
 const mongoose = require('mongoose');
 const url=require('./config/url.config')
 const port=require('./config/port.config')
+const cookieParser = require('cookie-parser');
 const app=express(); 
 
 app.use(cors({
@@ -13,6 +14,8 @@ app.use(cors({
 }))
 app.use(express.json()) //middle ware to covert data into json format
 app.use(express.static('Public'))
+app.use(cookieParser());
+ 
 
 //  connect to the mongo db 
 mongoose.connect(url.dbUrl)

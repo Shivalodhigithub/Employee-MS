@@ -10,6 +10,7 @@ const Dashboard = () => {
   const handleLogOut=()=>{
     axios.get('http://localhost:3000/auth/adminlogout').then((result) => {
       if(result.data.Status){
+        localStorage.removeItem("valid")//protected route
         navigate('/')
       }
       else{

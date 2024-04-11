@@ -3,6 +3,8 @@
  */
 const empModel=require('../model/employee.model')
 const bcrypt=require('bcrypt')
+const jwt=require('jsonwebtoken')
+const sec_key=require('../config/seckey.config')
  
 /**
  * create employee
@@ -38,6 +40,35 @@ exports.createEmp=async(req,res)=>{
 }
 
 /**
+ * login employee
+ */
+exports.empLogin=async(req,res)=>{
+    try {
+        console.log(req.body)
+        //fetch the data from  db based upon email 
+        const data = await empModel.findOne({email:req.body.email})
+         
+        // and validate with request data 
+        if(!data){
+            return res.status(200).json({Status:false,Error:'wrong email or password'})
+        }
+        const yes=bcrypt.compareSync(req.body.password,data.password)
+        if(!yes){
+            return res.status(200).json({Status:false,Error:'wrong email or password'})
+        }
+        //generate token and send cookies
+        const gentoken=jwt.sign({role:'employee',email:data.email, _id:data._id},sec_key.sec_key,{expiresIn:'1hr'})
+        res.cookie('token', gentoken)
+
+        //return response back to the server 
+        return res.status(200).json({Status:true,_id:data._id})  
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({Status:false,Error:'Internal Server Error'})
+    }
+}
+
+/**
  * fetch all employee
  */
 exports.getEmp=async(req,res)=>{
@@ -60,9 +91,11 @@ exports.getEmp=async(req,res)=>{
 exports.getSingleEmp=async(req,res)=>{
     try {
          const id=req.params._id; 
+         console.log(req.params._id)
 
         //fetch all the records data from data base
-        const empdata = await empModel.findById({_id:id})
+        // const empdata = await empModel.findById({_id:id})
+        const empdata= await empModel.findOne({_id:id})
 
         // return response to the cleint 
      

@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React,{useState} from 'react'
 import axios from 'axios'
 import './style.css'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Login = () => {
+const EmpLogin = () => {
     const [values, Setvalues] = useState({
         email: '',
         password: ''
@@ -18,12 +18,12 @@ const Login = () => {
         event.preventDefault();
 
         // console.log(values)
-        axios.post('http://localhost:3000/auth/adminlogin', values).then((result) => {
+        axios.post('http://localhost:3000/auth/empolyeelogin', values).then((result) => {
             console.log(result.data)
-            if(result.data.loginStatus){
-                // toast.success('Suceesfully login')
+            if(result.data.Status){
+                 
                 localStorage.setItem("valid",true);
-                navigate('/dashboard')    
+                navigate('/employeedetails/'+result.data._id)
                  
             }
             else{
@@ -44,10 +44,9 @@ const Login = () => {
 
 
     }
-
-    return (
-        <>
-            <div className=' d-flex justify-content-center vh-100 align-items-center loginPage'>
+  return (
+    <>
+              <div className=' d-flex justify-content-center vh-100 align-items-center loginPage'>
             <ToastContainer />
                 <div className=' p-3  w-25   rounded border loginForm'> <div className=" text-warning ">
             {error && error}
@@ -59,7 +58,7 @@ const Login = () => {
                     <form action="" onSubmit={loginData}>
                         <div className=' mb-3'>
                             <label htmlFor="email"><strong>Email:</strong></label>
-                            <input type="email" name="email" value={values.email} id="" placeholder='Enter email' className=' form-control rounded-0' autoComplete='off' onChange={(e) => Setvalues({ ...values, email: e.target.value })} />
+                            <input type="email" name="email" value={values.email} id="" placeholder='Enter email' className=' form-control rounded-1' autoComplete='off' onChange={(e) => Setvalues({ ...values, email: e.target.value })} />
                         </div>
                         <div className=' mb-3' >
                             <label htmlFor="password"> <strong>Password:</strong></label>
@@ -118,8 +117,9 @@ const Login = () => {
                     </form>
                 </div>
             </div>
-        </>
-    )
+      
+    </>
+  )
 }
 
-export default Login;
+export default EmpLogin
