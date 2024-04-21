@@ -14,9 +14,12 @@ import Start from './Components/Start'
 import EmpLogin from './Components/EmpLogin'
 import EmpDetails from './Components/EmpDetails'
 import PrivateRoute from './Components/PrivateRoute'
+import LeaveEmployee from './Components/LeaveEmployee'
+import Attedence from './Components/Attedence'
  
-// import 'bootstrap/dist/css/bootstrap.min.css'
-// import 'bootstrap/dist/js/bootstrap.bundle.min';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import EmpInfo from './Components/EmpInfo'
 //  
 function App() {
      
@@ -28,12 +31,18 @@ function App() {
         <Route path='/' element={<Start/>}></Route>
         <Route path='/adminlogin' element={<Login/>}></Route>
         <Route path='/employeelogin' element={<EmpLogin/>}></Route>
-        <Route path='/employeedetails/:_id' element={<EmpDetails/>}></Route>
-        <Route path='/dashboard' element={<PrivateRoute><Dashboard /></PrivateRoute>}>
+        <Route path='/employeedetails/:_id' element={<EmpDetails/>}>
+          <Route path='' element={<EmpInfo/>}></Route>
+          {/* <Route path='leave' element={<LeaveEmployee/>}></Route> */}
+          <Route path='/employeedetails/:_id/leave' element={<LeaveEmployee/>}></Route>
+        </Route>
+        <Route path='/dashboard' element={ <Dashboard />}>
         <Route path='' element={<Home/>}></Route>
         <Route path='/dashboard/employee' element={<Empolyee/>}></Route>
         <Route path='/dashboard/category' element={<Category/>}></Route>
         <Route path='/dashboard/profile' element={<Profile/>}></Route>
+        <Route path='/dashboard/leave' element={<LeaveEmployee/>}></Route>
+        <Route path='/dashboard/attendence' element={<Attedence/>}></Route>
         <Route path='/dashboard/add_category' element={<AddCategory/>}></Route>
         <Route path='/dashboard/add_employee' element={<AddEmployee/>}></Route>
         <Route path='/dashboard/edit_employee/:_id' element={<EditEmployee/>} ></Route>

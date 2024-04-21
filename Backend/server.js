@@ -33,6 +33,7 @@ db.once('open',()=>{
 require('./routes/auth.routes')(app);
 require('./routes/category.routes')(app);
 require('./routes/emp.routes')(app);
+require('./routes/leave.routes')(app);
 /**
  * Server is running
  */

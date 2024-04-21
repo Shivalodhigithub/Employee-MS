@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import {Outlet, useParams} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import axios from 'axios'
-import Navbar from './Navbar';
+ 
 import './style.css'
-const EmpDetails = () => {
+const EmpInfo = () => {
     const {_id}=useParams();
     const [emp,SetEmp]=useState([])
     console.log(_id)
@@ -17,17 +17,16 @@ const EmpDetails = () => {
         });
 
     },[])
-    // const emp_img={
-    //   height: '380px',
-    // width: '380px',
-    // borderRadius:' 100%'
-    // }
+    const emp_img={
+      height: '380px',
+    width: '380px',
+    borderRadius:' 100%'
+    }
   return (
     <>
-      <Navbar empdata={emp} _id={_id}/>
+       
       <div className="cotainer">
-      <Outlet/>
-        {/* <div className="row">
+        <div className="row">
           <div className="col-10 mx-auto ">
           <div className="row justify-content-center align-items-center mt-5">
             <div className="col-5">
@@ -43,11 +42,11 @@ const EmpDetails = () => {
           </div>
 
           </div>
-        </div> */}
+        </div>
       </div>
 
     </>
   )
 }
 
-export default EmpDetails
+export default EmpInfo
