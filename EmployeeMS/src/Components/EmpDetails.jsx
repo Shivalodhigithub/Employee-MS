@@ -25,25 +25,9 @@ const EmpDetails = () => {
   return (
     <>
       <Navbar empdata={emp} _id={_id}/>
-      <div className="cotainer">
+      <div className="">
       <Outlet/>
-        {/* <div className="row">
-          <div className="col-10 mx-auto ">
-          <div className="row justify-content-center align-items-center mt-5">
-            <div className="col-5">
-             <h3>Hii,I'm</h3>
-             <h5>{emp.name}</h5>
-             <p>{emp.email}</p>
-             <p>{emp.category}</p>
-            </div>
-            <div className="col-5">
-            <img src={"http://localhost:3000/Images/"+emp.img} alt="" className=' img-thumbnail img-fluid emp_img' style={emp_img} />
-
-            </div>
-          </div>
-
-          </div>
-        </div> */}
+        
       </div>
 
     </>

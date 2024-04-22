@@ -15,6 +15,8 @@ const Attedence = () => {
         }).catch((err) => {
             console.log(err)
         });
+
+ 
     
     },[])
     const ad=d.map((val,ind)=>{

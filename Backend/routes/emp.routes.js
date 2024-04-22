@@ -16,5 +16,7 @@ module.exports=(app)=>{
     app.delete('/auth/employee/:_id', empController.deleteEmp)
     app.get('/auth/employee_cnt',empController.getCountEmp)
     app.get('/auth/employee_cntsalary',empController.getCountSalary)
+    app.get('/auth/employeelogout',empController.logout)
 
 }
+// http://localhost:3000/auth/employeelogout

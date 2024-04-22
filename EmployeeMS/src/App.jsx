@@ -20,6 +20,7 @@ import Attedence from './Components/Attedence'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import EmpInfo from './Components/EmpInfo'
+import EmpAttendence from './Components/EmpAttendence'
 //  
 function App() {
      
@@ -35,7 +36,8 @@ function App() {
           <Route path='' element={<EmpInfo/>}></Route>
           {/* <Route path='leave' element={<LeaveEmployee/>}></Route> */}
           <Route path='/employeedetails/:_id/leave' element={<LeaveEmployee/>}></Route>
-        </Route>
+          <Route path='/employeedetails/:_id/attendence' element={<EmpAttendence/>} ></Route>
+        </Route> 
         <Route path='/dashboard' element={ <Dashboard />}>
         <Route path='' element={<Home/>}></Route>
         <Route path='/dashboard/employee' element={<Empolyee/>}></Route>

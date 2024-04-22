@@ -172,6 +172,17 @@ exports.getCountSalary=async(req,res)=>{
     }
 
 }
+
+exports.logout=(req,res)=>{
+    try {
+        res.clearCookie('token')
+        return res.json({Status:true})
+        
+    } catch (error) {
+        console.log(error) 
+        return res.json({Status:false})
+    }
+}
 // async function getCount() {
 //     try {
 //         const countSal = await empModel.aggregate([{ $group: { _id: null, total: { $sum: "$salary" } } }]);
