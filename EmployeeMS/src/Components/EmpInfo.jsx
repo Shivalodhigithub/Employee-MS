@@ -33,7 +33,7 @@ const EmpInfo = () => {
              <h3>Hii,I'm</h3>
              <h5>{emp.name}</h5>
              <p>{emp.email}</p>
-             <p>{emp.category}</p>
+             {/* <p>{emp.category}</p> */}
             </div>
             <div className="col-5">
             <img src={"http://localhost:3000/Images/"+emp.img} alt="" className=' img-thumbnail img-fluid emp_img' style={emp_img} />
