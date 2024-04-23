@@ -8,7 +8,7 @@ import axios from 'axios'
 const Attedence = () => {
     const [d , Setd] = useState([])
     useEffect(()=>{
-        axios.get('https://sheetdb.io/api/v1/v4q5fxvoejy5a').then((result) => {
+        axios.get('https://sheetdb.io/api/v1/0qdzi2jyk29hk').then((result) => {
             Setd(result.data)
             console.log(result)
             
@@ -32,7 +32,7 @@ const Attedence = () => {
       <div className="container">
         <div className="row">
              <div className="container mt-5">
-              <h3 className='text-center '>Employee's Attendence</h3>
+              <h3 className='text-center p-3 '>Employee's Attendence</h3>
               <table class="table table-responsive table-bordered border-primary table-hover table-info">
   <thead>
     <tr>

@@ -26,7 +26,7 @@ const Dashboard = () => {
   return (
     <>
       <div className="cotainer-fluid">
-        <div className='row flex-nowrap '>
+        <div className=' row  flex-nowrap '>
           <div className=" col-auto col-md-3 col-xl-2 px-sm-2 px-0     dash-routes dashboard">
             <div className=' d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100'>
               <Link to='/dashboard' className='d-flex align-items-center pb-3 mb-mb-1 mt-md-3 me-md-auto text-white text-decoration-none ' ><span className=' fs-5 fw-bolder d-none d-sm-inline'>EMS with Shiva</span></Link>

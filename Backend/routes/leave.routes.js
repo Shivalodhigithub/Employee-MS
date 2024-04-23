@@ -7,4 +7,9 @@ const leaveController = require('../controller/leave.controller')
 module.exports=(app)=>{
      
     app.post('/employeedetails/:_id/leave',leaveController.createLeave)
+    app.get('/auth/leave',leaveController.getLeave)
+    app.put('/auth/leave/:_id',leaveController.updateLeave)
+    
+
 }
+// http://localhost:3000/auth/leave

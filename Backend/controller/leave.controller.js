@@ -27,3 +27,36 @@ exports.createLeave=async(req,res)=>{
         return res.Status({Status:false})
     }
 }
+
+/**
+ * get all the leaves 
+ */
+
+exports.getLeave=async(req,res)=>{
+    try {
+        const leaveData = await leaveModel.find()
+        
+        return res.json({Status:true , leaveData})
+
+        
+    } catch (error) {
+        console.log(error)
+        return res.json({Status:false})
+        
+    }
+}
+
+exports.updateLeave=async(req,res)=>{
+    try {
+        
+        const _id=req.params._id;
+        const changed = await leaveModel.findOneAndUpdate({_id:_id},req.body,{returnDocument:'after'})
+        // console.log(changed)
+        return res.json({Status:true,changed})
+         
+    } catch (error) {
+        console.log(error)
+        return res.json({Status:false,Error:'Internal Server Error'})
+        
+    }
+}

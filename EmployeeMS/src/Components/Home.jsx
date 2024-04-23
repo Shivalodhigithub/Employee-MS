@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import './style.css'
 const Home = () => {
   const [cntEmp,SetCountEmp]=useState(0);
   const [cntAdmin,SetCntAdmin]=useState(0);
@@ -43,17 +44,17 @@ const Home = () => {
         <div className="row">
         <div className="col-10 mx-auto">
           <div className="row">
-          <div className="col shadow rounded mx-3 ">
+          <div className="col shadow rounded mx-3 div-1 ">
             <h4 className=' text-center'>Employee</h4>
             <hr />
             <h5>Total: {cntEmp}</h5>
           </div>
-          <div className="col shadow rounded mx-3 ">
+          <div className="col shadow rounded mx-3 div-2 ">
             <h4 className=' text-center'>Admin</h4>
             <hr />
             <h5>Total: {cntAdmin}</h5>
           </div>
-          <div className="col  shadow rounded mx-3  ">
+          <div className="col  shadow rounded mx-3 div-3  ">
             <h4 className=' text-center'>Salary</h4>
             <hr />
             <h5>Total: ${totalSalary}</h5>
